@@ -18,6 +18,8 @@ We are going to demo a dAPP (Lottery) deployed on a local ethermintd integrated 
 
 There are many guide out there and a good place to start building your light node is to follow the blockspace race incentivized testnet (ITN) tasks https://docs.celestia.org/nodes/itn-deploy-light/
 
+> Do not forget to fund the account used by the light node
+
 ## Run your local Ethermintd/rollkit
 
 ### install golang v1.19.1
@@ -52,11 +54,17 @@ RPC=https://rpc-blockspacerace.pops.one
 NAMESPACE_ID=$(openssl rand -hex 8)
 DA_BLOCK_HEIGHT=$(curl $RPC/block | jq -r '.result.block.header.height')
 
-#start local ethermint 
-ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
+# start local ethermint
+ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT 
 ```
 
 > Do not forget to fund the account used by the light node
+
+You will the below error message if you haven't
+
+```
+9:26AM ERR DA layer submission failed error="rpc error: code = NotFound desc = account celestia14x0uurpx4gqcelp7tc28lp43sw5u9mr5tkfted not found" attempt=1 module=BlockManager
+```
 
 ## Deploy your lottery contract
 
@@ -64,6 +72,7 @@ ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit
 
 ```
 curl -L https://foundry.paradigm.xyz | bash
+source ~/.bashrc
 foundryup 
 ```
 
@@ -78,9 +87,11 @@ The key will be used to deploy the contract
 ### Deploy the contract
 
 ```
+cd $HOME
 git clone https://github.com/P-OPSTeam/Celestia-rollup-Lottery.git
 cd Celestia-rollup-Lottery
 forge install foundry-rs/forge-std
+# ignore the error with lib The following paths are ignored by one of your .gitignore files: lib
 forge script script/Lottery.s.sol:ContractScript --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
 ```
 
@@ -144,7 +155,7 @@ you will need to add a custom network pointing to your own ethermintd/rollit RPC
 - Network Name : `My Ethermintd`
 - New RPC URL : `http://<yourip>:8545`
 - Chain ID : `9000`
-- Currency symbol : `evmos`
+- Currency symbol : `TEVMOS`
 
 You can now import the $PRIVATE_KEY into metamask.
 
