@@ -48,7 +48,7 @@ function App() {
         const ticketMax = await contract.methods.ticketMax().call();
         setTicketMax(ticketMax);
         const ticketPrice = await contract.methods.ticketPrice().call();
-        setTicketPrice(ticketPrice);
+        setTicketPrice(web3.utils.fromWei(ticketPrice.toString(), 'ether'));
         const nbticketBought = await contract.methods.ticketsBought().call();
         setnbticketBought(nbticketBought);
         const ticketPurchased = await contract.methods.getTicketsPurchased().call();
@@ -68,8 +68,7 @@ function App() {
         {
           to: contract_address,
           from: accounts[0], 
-          //value: web3.utils.toWei(ticketprice, 'ether'),
-          value: ticketprice,
+          value: web3.utils.toWei(ticketprice, 'ether'),
           gas: 70000});
       console.log("result:" + result);
       setTicketPurchased(prevState => {

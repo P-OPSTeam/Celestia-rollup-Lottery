@@ -16,7 +16,7 @@ contract Lottery {
     event LotteryAmountPaid(address indexed _winner, uint256 _ticketID, uint256 _amount);
 
     // Note: prone to change
-    uint64 public ticketPrice = 5;
+    uint64 public ticketPrice = 5000000000000000000;
     uint64 public ticketMax = 25;
 
     // Initialize mapping
