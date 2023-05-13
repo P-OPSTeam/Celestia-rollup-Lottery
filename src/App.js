@@ -179,9 +179,9 @@ function App() {
           <div class="col-lg-8 mx-auto">
             <h1>FAQ</h1>
             <h4>What is Etherball?</h4>
-            <p class="lead">Etherball is a lottery built on top of the Etherum blockchain. Because of its decentralized nature, Etherball is completely controlled by the blockchain, so payments and ticket-buying is secured with the power of millions of computers around the world.</p>
+            <p class="lead">Etherball is a lottery built on top of the Etherum blockchain. This version has been updated to run on Ethermint. Because of its decentralized nature, Etherball is completely controlled by the blockchain, so payments and ticket-buying is secured with the power of millions of computers around the world.</p>
             <h4>Why should I trust it?</h4>
-            <p class="lead">You're free (and encouraged) to check out the source code at (etherscan link here). If you have any questions or concerns feel free to contact me using the links at the bottom of the page.</p>
+            <p class="lead">You're free (and encouraged) to check out the source code available on the repo. If you have any questions or concerns feel free to contact me using the links at the bottom of the page.</p>
             <h4>How can I use Etherball?</h4>
             <p class="lead">The easiest way to use Etherball is to download the Metamask wallet <a href="https://metamask.io">here</a>, send your Metamask wallet some ether using an exchange of sorts, and choosing a ticket to buy at the top of the page.</p>
             <h4>My transaction isn't going through. Why?</h4>
