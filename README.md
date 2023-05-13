@@ -1,70 +1,156 @@
-# Getting Started with Create React App
+# Getting with a Celestia Lottery rollup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Learn celestia (https://docs.celestia.org/concepts/how-celestia-works/introduction/) and its rollup (https://blog.celestia.org/sovereign-rollup-chains/)
 
-## Available Scripts
+## introduction
 
-In the project directory, you can run:
+We are going to demo a dAPP (Lottery) deployed on a local ethermintd integrated with rollkit (https://rollkit.dev/docs/intro/). Blocks will be submitted to the Celesia DA layer via a local light node connected to the blockspace race.
 
-### `npm start`
+## Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Foundry
+- Celestia fork ethermind https://github.com/celestiaorg/ethermint.git
+- rollkit https://rollkit.dev/docs/intro/
+- nodejs v14.x, npm, reactjs
+- metamask
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Build your light node
 
-### `npm test`
+There are many guide out there and a good place to start building your light node is to follow the blockspace race incentivized testnet (ITN) tasks https://docs.celestia.org/nodes/itn-deploy-light/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run your local Ethermintd/rollkit
 
-### `npm run build`
+### install golang v1.19.1
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+ver="1.19.1" 
+cd $HOME 
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" 
+sudo rm -rf /usr/local/go 
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" 
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.profile
+source $HOME/.bashrc
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Install Ethermintd/rollkit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+git clone https://github.com/celestiaorg/ethermint.git
+cd ethermint
+make install
+```
 
-### `npm run eject`
+### Run it !
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+# init your local blockchain
+bash init.sh
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# generate
+RPC=https://rpc-blockspacerace.pops.one
+NAMESPACE_ID=$(openssl rand -hex 8)
+DA_BLOCK_HEIGHT=$(curl $RPC/block | jq -r '.result.block.header.height')
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#start local ethermint 
+ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> Do not forget to fund the account used by the light node
 
-## Learn More
+## Deploy your lottery contract
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Install foundry
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+curl -L https://foundry.paradigm.xyz | bash
+foundryup 
+```
 
-### Code Splitting
+### Extract the private key
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test)
+```
 
-### Analyzing the Bundle Size
+The key will be used to deploy the contract
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Deploy the contract
 
-### Making a Progressive Web App
+```
+git clone https://github.com/P-OPSTeam/Celestia-rollup-Lottery.git
+cd Celestia-rollup-Lottery
+forge install foundry-rs/forge-std
+forge script script/Lottery.s.sol:ContractScript --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Copy the contrat address
 
-### Advanced Configuration
+```
+CONTRACT_ADDRESS=<contract_address from previous output>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Test the contract
 
-### Deployment
+```
+cast call $CONTRACT_ADDRESS "ticketMax()" --rpc-url http://localhost:8545
+0x0000000000000000000000000000000000000000000000000000000000000019
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+> 0x19 is 25 in decimal
 
-### `npm run build` fails to minify
+## Build the frontend 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### install the dependencies of project
+
+```
+# install nodejs 14.x
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+sudo apt update
+sudo apt -y install nodejs
+
+# check node version
+node  -v
+
+# install project dependencies
+npm install
+```
+
+### replace the contract address with yours
+
+```
+sed -i -e "s/0x7950626960596b0fbdd66381a5e88c6b5b7a0849/$CONTRACT_ADDRESS/g" src/config.js
+```
+
+### Update contract manifest
+
+if you updated and build a different contract you will need to copy the new contract manifest
+
+```
+cp out/Lottery.s.sol/Lottery.sol src/
+```
+
+else you can skip this part
+
+### run the frontend
+
+```
+npm run start
+```
+
+### Metamask network configuration
+
+you will need to add a custom network pointing to your own ethermintd/rollit RPC endpoint
+- Network Name : `My Ethermintd`
+- New RPC URL : `http://<yourip>:8545`
+- Chain ID : `9000`
+- Currency symbol : `evmos`
+
+You can now import the $PRIVATE_KEY into metamask.
+
+For testing, create another account and transfer EVMOS to that new account !!
+
+Enjoy !!
+
+# Credits
+Thanks to <a href="https://github.com/njaladan/"> Nagaganesh Jaladanki </a>.

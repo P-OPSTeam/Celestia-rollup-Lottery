@@ -1,0 +1,3984 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_winner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_ticketID",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "LotteryAmountPaid",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_purchaser",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_ticketID",
+          "type": "uint256"
+        }
+      ],
+      "name": "LotteryTicketPurchased",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "_ticket",
+          "type": "uint16"
+        }
+      ],
+      "name": "buyTicket",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "_ticket",
+          "type": "uint16"
+        }
+      ],
+      "name": "buyTicket2",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTicketsPurchased",
+      "outputs": [
+        {
+          "internalType": "address payable[26]",
+          "name": "",
+          "type": "address[26]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "increaseTicket",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lotteryPicker",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sendReward",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "ticketMapping",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ticketMax",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ticketPrice",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ticketsBought",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x6080604052600080546001600160801b03191668190000000000000005178155601b5534801561002e57600080fd5b5061096d8061003e6000396000f3fe6080604052600436106100915760003560e01c806368e451221161005957806368e451221461015b5780637cdcc30e1461017b5780637f702e801461019d578063af4a047a146101bd578063e3075e4e146101d357600080fd5b806304bccf7a146100965780631149a81a146100be5780631209b1f6146100eb57806331bddc21146101235780634eefee3414610148575b600080fd5b3480156100a257600080fd5b506100ab6101fa565b6040519081526020015b60405180910390f35b3480156100ca57600080fd5b506100d36102c5565b6040516001600160a01b0390911681526020016100b5565b3480156100f757600080fd5b5060005461010b906001600160401b031681565b6040516001600160401b0390911681526020016100b5565b34801561012f57600080fd5b506101386103e3565b60405190151581526020016100b5565b61013861015636600461079e565b610404565b34801561016757600080fd5b5061013861017636600461079e565b610662565b34801561018757600080fd5b50610190610684565b6040516100b591906107c9565b3480156101a957600080fd5b506100d36101b8366004610804565b6106ca565b3480156101c957600080fd5b506100ab601b5481565b3480156101df57600080fd5b5060005461010b90600160401b90046001600160401b031681565b60008054601b54600160401b9091046001600160401b0316111561021d57600080fd5b6000424360405160200161023b929190918252602082015260400190565b6040516020818303038152906040529050600060028260405161025e919061081d565b602060405180830381855afa15801561027b573d6000803e3d6000fd5b5050506040513d601f19601f8201168201806040525081019061029e919061084c565b6000549091506102be90600160401b90046001600160401b031682610865565b9250505090565b60008054601b54600160401b9091046001600160401b031611156102e857600080fd5b60006102f26101fa565b90506000600182601a811061030957610309610887565b0154600080546001600160a01b0390921692509061033a906001600160401b0380821691600160401b9004166108b3565b6001600160401b031690506001600160a01b03821661035857600080fd5b6103606106ea565b506040516001600160a01b0383169082156108fc029083906000818181858888f19350505050158015610397573d6000803e3d6000fd5b5060408051848152602081018390526001600160a01b038416917f90fae5ca492960e1bb35453bb2762d7fe405c674e6e13ac7a0bc7e6290a088f8910160405180910390a25091505090565b60006001601b60008282546103f891906108de565b90915550600192915050565b600080546001600160401b0316341461045b5760405162461bcd60e51b8152602060048201526014602482015273496e76616c6964207469636b657420707269636560601b60448201526064015b60405180910390fd5b60008261ffff16118015610498575060005461048890600160401b90046001600160401b031660016108f7565b6001600160401b03168261ffff16105b6104dc5760405162461bcd60e51b815260206004820152601560248201527424b73b30b634b2103a34b1b5b2ba10373ab6b132b960591b6044820152606401610452565b6000600161ffff8416601a81106104f5576104f5610887565b01546001600160a01b0316146105435760405162461bcd60e51b8152602060048201526013602482015272151a58dad95d08185b1c9958591e481cdbdb19606a1b6044820152606401610452565b600054601b54600160401b9091046001600160401b0316116105a75760405162461bcd60e51b815260206004820152601860248201527f416c6c207469636b65747320616c726561647920736f6c6400000000000000006044820152606401610452565b60003390506001601b60008282546105bf91906108de565b90915550819050600161ffff8516601a81106105dd576105dd610887565b0180546001600160a01b0319166001600160a01b0392831617905560405161ffff85168152908216907f5436f9c7563d4b5be022d399b41f15519419cafca0f81c49d0cfbe78b925cbff9060200160405180910390a2600054601b54600160401b9091046001600160401b031611610659576106576102c5565b505b50600192915050565b60006001601b600082825461067791906108de565b9091555060019392505050565b61068c61077f565b6040805161034081019182905290600190601a9082845b81546001600160a01b031681526001909101906020018083116106a3575050505050905090565b600181601a81106106da57600080fd5b01546001600160a01b0316905081565b60008054601b54600160401b9091046001600160401b0316111561070d57600080fd5b6000601b8190555b60005461073390600160401b90046001600160401b031660016108f7565b6001600160401b031681101561077757600181601a811061075657610756610887565b0180546001600160a01b03191690558061076f8161091e565b915050610715565b506001905090565b604051806103400160405280601a906020820280368337509192915050565b6000602082840312156107b057600080fd5b813561ffff811681146107c257600080fd5b9392505050565b6103408101818360005b601a8110156107fb5781516001600160a01b03168352602092830192909101906001016107d3565b50505092915050565b60006020828403121561081657600080fd5b5035919050565b6000825160005b8181101561083e5760208186018101518583015201610824565b506000920191825250919050565b60006020828403121561085e57600080fd5b5051919050565b60008261088257634e487b7160e01b600052601260045260246000fd5b500690565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b6001600160401b038181168382160280821691908281146108d6576108d661089d565b505092915050565b808201808211156108f1576108f161089d565b92915050565b6001600160401b038181168382160190808211156109175761091761089d565b5092915050565b6000600182016109305761093061089d565b506001019056fea2646970667358221220b7dec4e5f2a3c5bfb2ae33887770a86529e144558e3fbf71e22e2cef8f25bb4b64736f6c63430008130033",
+    "sourceMap": "323:3258:13:-:0;;;548:29;;;-1:-1:-1;;;;;;583:28:13;;;;;690:32;;323:3258;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x6080604052600436106100915760003560e01c806368e451221161005957806368e451221461015b5780637cdcc30e1461017b5780637f702e801461019d578063af4a047a146101bd578063e3075e4e146101d357600080fd5b806304bccf7a146100965780631149a81a146100be5780631209b1f6146100eb57806331bddc21146101235780634eefee3414610148575b600080fd5b3480156100a257600080fd5b506100ab6101fa565b6040519081526020015b60405180910390f35b3480156100ca57600080fd5b506100d36102c5565b6040516001600160a01b0390911681526020016100b5565b3480156100f757600080fd5b5060005461010b906001600160401b031681565b6040516001600160401b0390911681526020016100b5565b34801561012f57600080fd5b506101386103e3565b60405190151581526020016100b5565b61013861015636600461079e565b610404565b34801561016757600080fd5b5061013861017636600461079e565b610662565b34801561018757600080fd5b50610190610684565b6040516100b591906107c9565b3480156101a957600080fd5b506100d36101b8366004610804565b6106ca565b3480156101c957600080fd5b506100ab601b5481565b3480156101df57600080fd5b5060005461010b90600160401b90046001600160401b031681565b60008054601b54600160401b9091046001600160401b0316111561021d57600080fd5b6000424360405160200161023b929190918252602082015260400190565b6040516020818303038152906040529050600060028260405161025e919061081d565b602060405180830381855afa15801561027b573d6000803e3d6000fd5b5050506040513d601f19601f8201168201806040525081019061029e919061084c565b6000549091506102be90600160401b90046001600160401b031682610865565b9250505090565b60008054601b54600160401b9091046001600160401b031611156102e857600080fd5b60006102f26101fa565b90506000600182601a811061030957610309610887565b0154600080546001600160a01b0390921692509061033a906001600160401b0380821691600160401b9004166108b3565b6001600160401b031690506001600160a01b03821661035857600080fd5b6103606106ea565b506040516001600160a01b0383169082156108fc029083906000818181858888f19350505050158015610397573d6000803e3d6000fd5b5060408051848152602081018390526001600160a01b038416917f90fae5ca492960e1bb35453bb2762d7fe405c674e6e13ac7a0bc7e6290a088f8910160405180910390a25091505090565b60006001601b60008282546103f891906108de565b90915550600192915050565b600080546001600160401b0316341461045b5760405162461bcd60e51b8152602060048201526014602482015273496e76616c6964207469636b657420707269636560601b60448201526064015b60405180910390fd5b60008261ffff16118015610498575060005461048890600160401b90046001600160401b031660016108f7565b6001600160401b03168261ffff16105b6104dc5760405162461bcd60e51b815260206004820152601560248201527424b73b30b634b2103a34b1b5b2ba10373ab6b132b960591b6044820152606401610452565b6000600161ffff8416601a81106104f5576104f5610887565b01546001600160a01b0316146105435760405162461bcd60e51b8152602060048201526013602482015272151a58dad95d08185b1c9958591e481cdbdb19606a1b6044820152606401610452565b600054601b54600160401b9091046001600160401b0316116105a75760405162461bcd60e51b815260206004820152601860248201527f416c6c207469636b65747320616c726561647920736f6c6400000000000000006044820152606401610452565b60003390506001601b60008282546105bf91906108de565b90915550819050600161ffff8516601a81106105dd576105dd610887565b0180546001600160a01b0319166001600160a01b0392831617905560405161ffff85168152908216907f5436f9c7563d4b5be022d399b41f15519419cafca0f81c49d0cfbe78b925cbff9060200160405180910390a2600054601b54600160401b9091046001600160401b031611610659576106576102c5565b505b50600192915050565b60006001601b600082825461067791906108de565b9091555060019392505050565b61068c61077f565b6040805161034081019182905290600190601a9082845b81546001600160a01b031681526001909101906020018083116106a3575050505050905090565b600181601a81106106da57600080fd5b01546001600160a01b0316905081565b60008054601b54600160401b9091046001600160401b0316111561070d57600080fd5b6000601b8190555b60005461073390600160401b90046001600160401b031660016108f7565b6001600160401b031681101561077757600181601a811061075657610756610887565b0180546001600160a01b03191690558061076f8161091e565b915050610715565b506001905090565b604051806103400160405280601a906020820280368337509192915050565b6000602082840312156107b057600080fd5b813561ffff811681146107c257600080fd5b9392505050565b6103408101818360005b601a8110156107fb5781516001600160a01b03168352602092830192909101906001016107d3565b50505092915050565b60006020828403121561081657600080fd5b5035919050565b6000825160005b8181101561083e5760208186018101518583015201610824565b506000920191825250919050565b60006020828403121561085e57600080fd5b5051919050565b60008261088257634e487b7160e01b600052601260045260246000fd5b500690565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b6001600160401b038181168382160280821691908281146108d6576108d661089d565b505092915050565b808201808211156108f1576108f161089d565b92915050565b6001600160401b038181168382160190808211156109175761091761089d565b5092915050565b6000600182016109305761093061089d565b506001019056fea2646970667358221220b7dec4e5f2a3c5bfb2ae33887770a86529e144558e3fbf71e22e2cef8f25bb4b64736f6c63430008130033",
+    "sourceMap": "323:3258:13:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2801:233;;;;;;;;;;;;;:::i;:::-;;;160:25:14;;;148:2;133:18;2801:233:13;;;;;;;;2222:500;;;;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;;;;376:32:14;;;358:51;;346:2;331:18;2222:500:13;196:219:14;548:29:13;;;;;;;;;;-1:-1:-1;548:29:13;;;;-1:-1:-1;;;;;548:29:13;;;;;;-1:-1:-1;;;;;582:31:14;;;564:50;;552:2;537:18;548:29:13;420:200:14;2019:100:13;;;;;;;;;;;;;:::i;:::-;;;790:14:14;;783:22;765:41;;753:2;738:18;2019:100:13;625:187:14;1052:845:13;;;;;;:::i;:::-;;:::i;1903:110::-;;;;;;;;;;-1:-1:-1;1903:110:13;;;;;:::i;:::-;;:::i;3465:114::-;;;;;;;;;;;;;:::i;:::-;;;;;;;:::i;644:40::-;;;;;;;;;;-1:-1:-1;644:40:13;;;;;:::i;:::-;;:::i;690:32::-;;;;;;;;;;;;;;;;583:28;;;;;;;;;;-1:-1:-1;583:28:13;;;;-1:-1:-1;;;583:28:13;;-1:-1:-1;;;;;583:28:13;;;2801:233;2862:7;851:9;;834:13;;-1:-1:-1;;;851:9:13;;;-1:-1:-1;;;;;851:9:13;-1:-1:-1;834:26:13;826:35;;;;;;2879:20:::1;2919:15;2936:12;2902:47;;;;;;;;1980:19:14::0;;;2024:2;2015:12;;2008:28;2061:2;2052:12;;1823:247;2902:47:13::1;;;;;;;;;;;;;2879:70;;2957:12;2972:15;2979:7;2972:15;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;3018:9;::::0;2957:30;;-1:-1:-1;3002:25:13::1;::::0;-1:-1:-1;;;3018:9:13;::::1;-1:-1:-1::0;;;;;3018:9:13::1;2957:30:::0;3002:25:::1;:::i;:::-;2995:32;;;;2801:233:::0;:::o;2222:500::-;2275:15;851:9;;834:13;;-1:-1:-1;;;851:9:13;;;-1:-1:-1;;;;;851:9:13;-1:-1:-1;834:26:13;826:35;;;;;;2301:21:::1;2325:15;:13;:15::i;:::-;2301:39;;2348:22;2373:13;2387;2373:28;;;;;;;:::i;:::-;;::::0;::::1;2443:11:::0;;-1:-1:-1;;;;;2373:28:13;;::::1;::::0;-1:-1:-1;2373:28:13;2431:23:::1;::::0;-1:-1:-1;;;;;2443:11:13;;::::1;::::0;-1:-1:-1;;;2431:9:13;::::1;;:23;:::i;:::-;-1:-1:-1::0;;;;;2409:45:13::1;::::0;-1:-1:-1;;;;;;2527:20:13;::::1;2519:29;;;::::0;::::1;;2585:7;:5;:7::i;:::-;-1:-1:-1::0;2600:28:13::1;::::0;-1:-1:-1;;;;;2600:15:13;::::1;::::0;:28;::::1;;;::::0;2616:11;;2600:28:::1;::::0;;;2616:11;2600:15;:28;::::1;;;;;;;;;;;;;::::0;::::1;;;;;-1:-1:-1::0;2641:53:13::1;::::0;;3595:25:14;;;3651:2;3636:18;;3629:34;;;-1:-1:-1;;;;;2641:53:13;::::1;::::0;::::1;::::0;3568:18:14;2641:53:13::1;;;;;;;-1:-1:-1::0;2709:6:13;-1:-1:-1;;2222:500:13;:::o;2019:100::-;2061:4;2092:1;2075:13;;:18;;;;;;;:::i;:::-;;;;-1:-1:-1;2108:4:13;;2019:100;-1:-1:-1;;2019:100:13:o;1052:845::-;1111:4;1146:11;;-1:-1:-1;;;;;1146:11:13;1133:9;:24;1125:57;;;;-1:-1:-1;;;1125:57:13;;4006:2:14;1125:57:13;;;3988:21:14;4045:2;4025:18;;;4018:30;-1:-1:-1;;;4064:18:14;;;4057:50;4124:18;;1125:57:13;;;;;;;;;1208:1;1198:7;:11;;;:38;;;;-1:-1:-1;1223:9:13;;:13;;-1:-1:-1;;;1223:9:13;;-1:-1:-1;;;;;1223:9:13;1235:1;1223:13;:::i;:::-;-1:-1:-1;;;;;1213:23:13;:7;:23;;;1198:38;1190:72;;;;-1:-1:-1;;;1190:72:13;;4540:2:14;1190:72:13;;;4522:21:14;4579:2;4559:18;;;4552:30;-1:-1:-1;;;4598:18:14;;;4591:51;4659:18;;1190:72:13;4338:345:14;1190:72:13;1312:1;1278:13;:22;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;;;;1278:22:13;:36;1270:68;;;;-1:-1:-1;;;1270:68:13;;4890:2:14;1270:68:13;;;4872:21:14;4929:2;4909:18;;;4902:30;-1:-1:-1;;;4948:18:14;;;4941:49;5007:18;;1270:68:13;4688:343:14;1270:68:13;1370:9;;1354:13;;-1:-1:-1;;;1370:9:13;;;-1:-1:-1;;;;;1370:9:13;-1:-1:-1;1346:62:13;;;;-1:-1:-1;;;1346:62:13;;5238:2:14;1346:62:13;;;5220:21:14;5277:2;5257:18;;;5250:30;5316:26;5296:18;;;5289:54;5360:18;;1346:62:13;5036:348:14;1346:62:13;1451:25;1487:10;1451:47;;1523:1;1506:13;;:18;;;;;;;:::i;:::-;;;;-1:-1:-1;1557:9:13;;-1:-1:-1;1532:13:13;:22;;;;;;;;;;:::i;:::-;;:34;;-1:-1:-1;;;;;;1532:34:13;-1:-1:-1;;;;;1532:34:13;;;;;;1579:42;;5564:6:14;5552:19;;5534:38;;1579:42:13;;;;;;5522:2:14;5507:18;1579:42:13;;;;;;;1830:9;;1815:13;;-1:-1:-1;;;1830:9:13;;;-1:-1:-1;;;;;1830:9:13;-1:-1:-1;1811:61:13;;1851:12;:10;:12::i;:::-;;1811:61;-1:-1:-1;1886:4:13;;1052:845;-1:-1:-1;;1052:845:13:o;1903:110::-;1955:4;1986:1;1969:13;;:18;;;;;;;:::i;:::-;;;;-1:-1:-1;2002:4:13;;1903:110;-1:-1:-1;;;1903:110:13:o;3465:114::-;3516:26;;:::i;:::-;3552:20;;;;;;;;;;;3559:13;;3552:20;;3559:13;3552:20;;;;-1:-1:-1;;;;;3552:20:13;;;;;;;;;;;;;;;;;;;;;;3465:114;:::o;644:40::-;;;;;;;;;;;;;;-1:-1:-1;;;;;644:40:13;;-1:-1:-1;644:40:13;:::o;3102:193::-;3151:4;851:9;;834:13;;-1:-1:-1;;;851:9:13;;;-1:-1:-1;;;;;851:9:13;-1:-1:-1;834:26:13;826:35;;;;;;3181:1:::1;3165:13;:17:::0;;;3190:80:::1;3210:9;::::0;:11:::1;::::0;-1:-1:-1;;;3210:9:13;::::1;-1:-1:-1::0;;;;;3210:9:13::1;3220:1;3210:11;:::i;:::-;-1:-1:-1::0;;;;;3206:15:13::1;:1;:15;3190:80;;;3245:13;3259:1;3245:16;;;;;;;:::i;:::-;;3238:23:::0;;-1:-1:-1;;;;;;3238:23:13::1;::::0;;3223:3;::::1;::::0;::::1;:::i;:::-;;;;3190:80;;;;3284:4;3277:11;;3102:193:::0;:::o;-1:-1:-1:-;;;;;;;;;;;;;;;;;;;;;;;;:::o;817:272:14:-;875:6;928:2;916:9;907:7;903:23;899:32;896:52;;;944:1;941;934:12;896:52;983:9;970:23;1033:6;1026:5;1022:18;1015:5;1012:29;1002:57;;1055:1;1052;1045:12;1002:57;1078:5;817:272;-1:-1:-1;;;817:272:14:o;1094:539::-;1292:3;1277:19;;1281:9;1373:6;1250:4;1407:220;1421:4;1418:1;1415:11;1407:220;;;1484:13;;-1:-1:-1;;;;;1480:39:14;1468:52;;1543:4;1567:12;;;;1602:15;;;;1516:1;1434:9;1407:220;;;1411:3;;;1094:539;;;;:::o;1638:180::-;1697:6;1750:2;1738:9;1729:7;1725:23;1721:32;1718:52;;;1766:1;1763;1756:12;1718:52;-1:-1:-1;1789:23:14;;1638:180;-1:-1:-1;1638:180:14:o;2075:412::-;2204:3;2242:6;2236:13;2267:1;2277:129;2291:6;2288:1;2285:13;2277:129;;;2389:4;2373:14;;;2369:25;;2363:32;2350:11;;;2343:53;2306:12;2277:129;;;-1:-1:-1;2461:1:14;2425:16;;2450:13;;;-1:-1:-1;2425:16:14;2075:412;-1:-1:-1;2075:412:14:o;2492:184::-;2562:6;2615:2;2603:9;2594:7;2590:23;2586:32;2583:52;;;2631:1;2628;2621:12;2583:52;-1:-1:-1;2654:16:14;;2492:184;-1:-1:-1;2492:184:14:o;2681:209::-;2713:1;2739;2729:132;;2783:10;2778:3;2774:20;2771:1;2764:31;2818:4;2815:1;2808:15;2846:4;2843:1;2836:15;2729:132;-1:-1:-1;2875:9:14;;2681:209::o;2895:127::-;2956:10;2951:3;2947:20;2944:1;2937:31;2987:4;2984:1;2977:15;3011:4;3008:1;3001:15;3027:127;3088:10;3083:3;3079:20;3076:1;3069:31;3119:4;3116:1;3109:15;3143:4;3140:1;3133:15;3159:257;-1:-1:-1;;;;;3280:10:14;;;3292;;;3276:27;3323:20;;;;3230:18;3362:24;;;3352:58;;3390:18;;:::i;:::-;3352:58;;3159:257;;;;:::o;3674:125::-;3739:9;;;3760:10;;;3757:36;;;3773:18;;:::i;:::-;3674:125;;;;:::o;4153:180::-;-1:-1:-1;;;;;4258:10:14;;;4270;;;4254:27;;4293:11;;;4290:37;;;4307:18;;:::i;:::-;4290:37;4153:180;;;;:::o;5583:135::-;5622:3;5643:17;;;5640:43;;5663:18;;:::i;:::-;-1:-1:-1;5710:1:14;5699:13;;5583:135::o",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "buyTicket(uint16)": "4eefee34",
+    "buyTicket2(uint16)": "68e45122",
+    "getTicketsPurchased()": "7cdcc30e",
+    "increaseTicket()": "31bddc21",
+    "lotteryPicker()": "04bccf7a",
+    "sendReward()": "1149a81a",
+    "ticketMapping(uint256)": "7f702e80",
+    "ticketMax()": "e3075e4e",
+    "ticketPrice()": "1209b1f6",
+    "ticketsBought()": "af4a047a"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_winner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_ticketID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"LotteryAmountPaid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_purchaser\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_ticketID\",\"type\":\"uint256\"}],\"name\":\"LotteryTicketPurchased\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_ticket\",\"type\":\"uint16\"}],\"name\":\"buyTicket\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_ticket\",\"type\":\"uint16\"}],\"name\":\"buyTicket2\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTicketsPurchased\",\"outputs\":[{\"internalType\":\"address payable[26]\",\"name\":\"\",\"type\":\"address[26]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"increaseTicket\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lotteryPicker\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sendReward\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"ticketMapping\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ticketMax\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ticketPrice\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ticketsBought\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Nagaganesh Jaladanki\",\"details\":\"Simple lottery smart contract to run on the Ethereum chain. Designed to work well with a web3 front-end. Source of randomness comes from Ethereum block hashes. MIT License.\",\"kind\":\"dev\",\"methods\":{\"buyTicket(uint16)\":{\"details\":\"Purchase ticket and send reward if necessary\",\"params\":{\"_ticket\":\"Ticket number to purchase\"},\"returns\":{\"_0\":\"bool Validity of transaction\"}},\"getTicketsPurchased()\":{\"details\":\"Returns ticket map array for front-end access. Using a getter method is ineffective since it allows only element-level access\"},\"sendReward()\":{\"details\":\"Send lottery winner their reward\",\"returns\":{\"_0\":\"address of winner\"}}},\"title\":\"Ethereum-Lottery\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src_contract/Lottery.sol\":\"Lottery\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src_contract/Lottery.sol\":{\"keccak256\":\"0xe888f62276c2dfbc29cb3b6382dc85ea899336ce08caf976cd33cc1bb9220c60\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://edb52303cc44100a0b9964a447a28b27c91a8ea74c85780b67d90f5ba9a9a3c2\",\"dweb:/ipfs/QmWDvVMNxPL1hBHgvfYjcjLnfmbiHWBgs1c6txv4SHNbrB\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.19+commit.7dd6d404"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_winner",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "name": "_ticketID",
+              "type": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "name": "_amount",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "LotteryAmountPaid",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_purchaser",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "name": "_ticketID",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "LotteryTicketPurchased",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint16",
+              "name": "_ticket",
+              "type": "uint16"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "buyTicket",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint16",
+              "name": "_ticket",
+              "type": "uint16"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "buyTicket2",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getTicketsPurchased",
+          "outputs": [
+            {
+              "internalType": "address payable[26]",
+              "name": "",
+              "type": "address[26]"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "increaseTicket",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "lotteryPicker",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "sendReward",
+          "outputs": [
+            {
+              "internalType": "address payable",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "ticketMapping",
+          "outputs": [
+            {
+              "internalType": "address payable",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "ticketMax",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "ticketPrice",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "ticketsBought",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "buyTicket(uint16)": {
+            "details": "Purchase ticket and send reward if necessary",
+            "params": {
+              "_ticket": "Ticket number to purchase"
+            },
+            "returns": {
+              "_0": "bool Validity of transaction"
+            }
+          },
+          "getTicketsPurchased()": {
+            "details": "Returns ticket map array for front-end access. Using a getter method is ineffective since it allows only element-level access"
+          },
+          "sendReward()": {
+            "details": "Send lottery winner their reward",
+            "returns": {
+              "_0": "address of winner"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src_contract/Lottery.sol": "Lottery"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src_contract/Lottery.sol": {
+        "keccak256": "0xe888f62276c2dfbc29cb3b6382dc85ea899336ce08caf976cd33cc1bb9220c60",
+        "urls": [
+          "bzz-raw://edb52303cc44100a0b9964a447a28b27c91a8ea74c85780b67d90f5ba9a9a3c2",
+          "dweb:/ipfs/QmWDvVMNxPL1hBHgvfYjcjLnfmbiHWBgs1c6txv4SHNbrB"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src_contract/Lottery.sol",
+    "id": 24058,
+    "exportedSymbols": {
+      "Lottery": [
+        24057
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:3550:13",
+    "nodes": [
+      {
+        "id": 23783,
+        "nodeType": "PragmaDirective",
+        "src": "32:24:13",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".13"
+        ]
+      },
+      {
+        "id": 24057,
+        "nodeType": "ContractDefinition",
+        "src": "323:3258:13",
+        "nodes": [
+          {
+            "id": 23790,
+            "nodeType": "EventDefinition",
+            "src": "347:76:13",
+            "nodes": [],
+            "anonymous": false,
+            "eventSelector": "5436f9c7563d4b5be022d399b41f15519419cafca0f81c49d0cfbe78b925cbff",
+            "name": "LotteryTicketPurchased",
+            "nameLocation": "353:22:13",
+            "parameters": {
+              "id": 23789,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23786,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_purchaser",
+                  "nameLocation": "392:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23790,
+                  "src": "376:26:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 23785,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "376:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23788,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_ticketID",
+                  "nameLocation": "412:9:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23790,
+                  "src": "404:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23787,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "404:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "375:47:13"
+            }
+          },
+          {
+            "id": 23798,
+            "nodeType": "EventDefinition",
+            "src": "428:85:13",
+            "nodes": [],
+            "anonymous": false,
+            "eventSelector": "90fae5ca492960e1bb35453bb2762d7fe405c674e6e13ac7a0bc7e6290a088f8",
+            "name": "LotteryAmountPaid",
+            "nameLocation": "434:17:13",
+            "parameters": {
+              "id": 23797,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23792,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_winner",
+                  "nameLocation": "468:7:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "452:23:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 23791,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "452:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23794,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_ticketID",
+                  "nameLocation": "485:9:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "477:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23793,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "477:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23796,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nameLocation": "504:7:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "496:15:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23795,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "496:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "451:61:13"
+            }
+          },
+          {
+            "id": 23801,
+            "nodeType": "VariableDeclaration",
+            "src": "548:29:13",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "1209b1f6",
+            "mutability": "mutable",
+            "name": "ticketPrice",
+            "nameLocation": "562:11:13",
+            "scope": 24057,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint64",
+              "typeString": "uint64"
+            },
+            "typeName": {
+              "id": 23799,
+              "name": "uint64",
+              "nodeType": "ElementaryTypeName",
+              "src": "548:6:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint64",
+                "typeString": "uint64"
+              }
+            },
+            "value": {
+              "hexValue": "35",
+              "id": 23800,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "576:1:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_5_by_1",
+                "typeString": "int_const 5"
+              },
+              "value": "5"
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 23804,
+            "nodeType": "VariableDeclaration",
+            "src": "583:28:13",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "e3075e4e",
+            "mutability": "mutable",
+            "name": "ticketMax",
+            "nameLocation": "597:9:13",
+            "scope": 24057,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint64",
+              "typeString": "uint64"
+            },
+            "typeName": {
+              "id": 23802,
+              "name": "uint64",
+              "nodeType": "ElementaryTypeName",
+              "src": "583:6:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint64",
+                "typeString": "uint64"
+              }
+            },
+            "value": {
+              "hexValue": "3235",
+              "id": 23803,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "609:2:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_25_by_1",
+                "typeString": "int_const 25"
+              },
+              "value": "25"
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 23808,
+            "nodeType": "VariableDeclaration",
+            "src": "644:40:13",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "7f702e80",
+            "mutability": "mutable",
+            "name": "ticketMapping",
+            "nameLocation": "671:13:13",
+            "scope": 24057,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_payable_$26_storage",
+              "typeString": "address payable[26]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 23805,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "644:15:13",
+                "stateMutability": "payable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address_payable",
+                  "typeString": "address payable"
+                }
+              },
+              "id": 23807,
+              "length": {
+                "hexValue": "3236",
+                "id": 23806,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "660:2:13",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_rational_26_by_1",
+                  "typeString": "int_const 26"
+                },
+                "value": "26"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "644:19:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_payable_$26_storage_ptr",
+                "typeString": "address payable[26]"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 23811,
+            "nodeType": "VariableDeclaration",
+            "src": "690:32:13",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "af4a047a",
+            "mutability": "mutable",
+            "name": "ticketsBought",
+            "nameLocation": "705:13:13",
+            "scope": 24057,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 23809,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "690:7:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "30",
+              "id": 23810,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "721:1:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_0_by_1",
+                "typeString": "int_const 0"
+              },
+              "value": "0"
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 23821,
+            "nodeType": "ModifierDefinition",
+            "src": "792:85:13",
+            "nodes": [],
+            "body": {
+              "id": 23820,
+              "nodeType": "Block",
+              "src": "818:59:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 23816,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 23814,
+                          "name": "ticketsBought",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23811,
+                          "src": "834:13:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">=",
+                        "rightExpression": {
+                          "id": 23815,
+                          "name": "ticketMax",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23804,
+                          "src": "851:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint64",
+                            "typeString": "uint64"
+                          }
+                        },
+                        "src": "834:26:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 23813,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "826:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 23817,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "826:35:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23818,
+                  "nodeType": "ExpressionStatement",
+                  "src": "826:35:13"
+                },
+                {
+                  "id": 23819,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "869:1:13"
+                }
+              ]
+            },
+            "name": "allTicketsSold",
+            "nameLocation": "801:14:13",
+            "parameters": {
+              "id": 23812,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "815:2:13"
+            },
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 23903,
+            "nodeType": "FunctionDefinition",
+            "src": "1052:845:13",
+            "nodes": [],
+            "body": {
+              "id": 23902,
+              "nodeType": "Block",
+              "src": "1117:780:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 23833,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 23830,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "1133:3:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 23831,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1137:5:13",
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "src": "1133:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 23832,
+                          "name": "ticketPrice",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23801,
+                          "src": "1146:11:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint64",
+                            "typeString": "uint64"
+                          }
+                        },
+                        "src": "1133:24:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "496e76616c6964207469636b6574207072696365",
+                        "id": 23834,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1159:22:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_9ee9536cbf18cd9436df9be53d3392601bb03a991fa2c673ce6ad0e1a27dbb38",
+                          "typeString": "literal_string \"Invalid ticket price\""
+                        },
+                        "value": "Invalid ticket price"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_9ee9536cbf18cd9436df9be53d3392601bb03a991fa2c673ce6ad0e1a27dbb38",
+                          "typeString": "literal_string \"Invalid ticket price\""
+                        }
+                      ],
+                      "id": 23829,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "1125:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 23835,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1125:57:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23836,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1125:57:13"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 23846,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint16",
+                            "typeString": "uint16"
+                          },
+                          "id": 23840,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 23838,
+                            "name": "_ticket",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23824,
+                            "src": "1198:7:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint16",
+                              "typeString": "uint16"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": ">",
+                          "rightExpression": {
+                            "hexValue": "30",
+                            "id": 23839,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "1208:1:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0"
+                          },
+                          "src": "1198:11:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "&&",
+                        "rightExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint64",
+                            "typeString": "uint64"
+                          },
+                          "id": 23845,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 23841,
+                            "name": "_ticket",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23824,
+                            "src": "1213:7:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint16",
+                              "typeString": "uint16"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "<",
+                          "rightExpression": {
+                            "commonType": {
+                              "typeIdentifier": "t_uint64",
+                              "typeString": "uint64"
+                            },
+                            "id": 23844,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftExpression": {
+                              "id": 23842,
+                              "name": "ticketMax",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 23804,
+                              "src": "1223:9:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint64",
+                                "typeString": "uint64"
+                              }
+                            },
+                            "nodeType": "BinaryOperation",
+                            "operator": "+",
+                            "rightExpression": {
+                              "hexValue": "31",
+                              "id": 23843,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1235:1:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_1_by_1",
+                                "typeString": "int_const 1"
+                              },
+                              "value": "1"
+                            },
+                            "src": "1223:13:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint64",
+                              "typeString": "uint64"
+                            }
+                          },
+                          "src": "1213:23:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "1198:38:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "496e76616c6964207469636b6574206e756d626572",
+                        "id": 23847,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1238:23:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_6c0c030567e79d5b469c093b9707084628ef08ffbe76dabeebab7c927bba4e3c",
+                          "typeString": "literal_string \"Invalid ticket number\""
+                        },
+                        "value": "Invalid ticket number"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_6c0c030567e79d5b469c093b9707084628ef08ffbe76dabeebab7c927bba4e3c",
+                          "typeString": "literal_string \"Invalid ticket number\""
+                        }
+                      ],
+                      "id": 23837,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "1190:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 23848,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1190:72:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23849,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1190:72:13"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 23858,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "baseExpression": {
+                            "id": 23851,
+                            "name": "ticketMapping",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23808,
+                            "src": "1278:13:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_array$_t_address_payable_$26_storage",
+                              "typeString": "address payable[26] storage ref"
+                            }
+                          },
+                          "id": 23853,
+                          "indexExpression": {
+                            "id": 23852,
+                            "name": "_ticket",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23824,
+                            "src": "1292:7:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint16",
+                              "typeString": "uint16"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1278:22:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 23856,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1312:1:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 23855,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1304:7:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 23854,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "1304:7:13",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 23857,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1304:10:13",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1278:36:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "5469636b657420616c726561647920736f6c64",
+                        "id": 23859,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1316:21:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_5896e81781d64804c6744b9944c6f9b83afe6ecc9dec91e12190a91fea738acb",
+                          "typeString": "literal_string \"Ticket already sold\""
+                        },
+                        "value": "Ticket already sold"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_5896e81781d64804c6744b9944c6f9b83afe6ecc9dec91e12190a91fea738acb",
+                          "typeString": "literal_string \"Ticket already sold\""
+                        }
+                      ],
+                      "id": 23850,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "1270:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 23860,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1270:68:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23861,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1270:68:13"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 23865,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 23863,
+                          "name": "ticketsBought",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23811,
+                          "src": "1354:13:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "<",
+                        "rightExpression": {
+                          "id": 23864,
+                          "name": "ticketMax",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23804,
+                          "src": "1370:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint64",
+                            "typeString": "uint64"
+                          }
+                        },
+                        "src": "1354:25:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "416c6c207469636b65747320616c726561647920736f6c64",
+                        "id": 23866,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1381:26:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_962f8febf0d478a6b9054b6be535500fd63c80d540867eecddcc2c650eae9775",
+                          "typeString": "literal_string \"All tickets already sold\""
+                        },
+                        "value": "All tickets already sold"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_962f8febf0d478a6b9054b6be535500fd63c80d540867eecddcc2c650eae9775",
+                          "typeString": "literal_string \"All tickets already sold\""
+                        }
+                      ],
+                      "id": 23862,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "1346:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 23867,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1346:62:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23868,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1346:62:13"
+                },
+                {
+                  "assignments": [
+                    23870
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23870,
+                      "mutability": "mutable",
+                      "name": "purchaser",
+                      "nameLocation": "1467:9:13",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 23902,
+                      "src": "1451:25:13",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      },
+                      "typeName": {
+                        "id": 23869,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1451:15:13",
+                        "stateMutability": "payable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23876,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 23873,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "1487:3:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 23874,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1491:6:13",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1487:10:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 23872,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "1479:8:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_address_payable_$",
+                        "typeString": "type(address payable)"
+                      },
+                      "typeName": {
+                        "id": 23871,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1479:8:13",
+                        "stateMutability": "payable",
+                        "typeDescriptions": {}
+                      }
+                    },
+                    "id": 23875,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1479:19:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1451:47:13"
+                },
+                {
+                  "expression": {
+                    "id": 23879,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 23877,
+                      "name": "ticketsBought",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23811,
+                      "src": "1506:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "+=",
+                    "rightHandSide": {
+                      "hexValue": "31",
+                      "id": 23878,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1523:1:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "1506:18:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 23880,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1506:18:13"
+                },
+                {
+                  "expression": {
+                    "id": 23885,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 23881,
+                        "name": "ticketMapping",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23808,
+                        "src": "1532:13:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_payable_$26_storage",
+                          "typeString": "address payable[26] storage ref"
+                        }
+                      },
+                      "id": 23883,
+                      "indexExpression": {
+                        "id": 23882,
+                        "name": "_ticket",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23824,
+                        "src": "1546:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint16",
+                          "typeString": "uint16"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1532:22:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 23884,
+                      "name": "purchaser",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23870,
+                      "src": "1557:9:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "1532:34:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "id": 23886,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1532:34:13"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 23888,
+                        "name": "purchaser",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23870,
+                        "src": "1602:9:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "id": 23889,
+                        "name": "_ticket",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23824,
+                        "src": "1613:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint16",
+                          "typeString": "uint16"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint16",
+                          "typeString": "uint16"
+                        }
+                      ],
+                      "id": 23887,
+                      "name": "LotteryTicketPurchased",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23790,
+                      "src": "1579:22:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 23890,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1579:42:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23891,
+                  "nodeType": "EmitStatement",
+                  "src": "1574:47:13"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 23894,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 23892,
+                      "name": "ticketsBought",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23811,
+                      "src": "1815:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "id": 23893,
+                      "name": "ticketMax",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23804,
+                      "src": "1830:9:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint64",
+                        "typeString": "uint64"
+                      }
+                    },
+                    "src": "1815:24:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "documentation": "Placing the \"burden\" of sendReward() on the last ticket\n buyer is okay, because the refund from destroying the\n arrays decreases net gas cost",
+                  "id": 23899,
+                  "nodeType": "IfStatement",
+                  "src": "1811:61:13",
+                  "trueBody": {
+                    "id": 23898,
+                    "nodeType": "Block",
+                    "src": "1841:31:13",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 23895,
+                            "name": "sendReward",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23981,
+                            "src": "1851:10:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_nonpayable$__$returns$_t_address_payable_$",
+                              "typeString": "function () returns (address payable)"
+                            }
+                          },
+                          "id": 23896,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1851:12:13",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "id": 23897,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1851:12:13"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "hexValue": "74727565",
+                    "id": 23900,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1886:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 23828,
+                  "id": 23901,
+                  "nodeType": "Return",
+                  "src": "1879:11:13"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 23822,
+              "nodeType": "StructuredDocumentation",
+              "src": "883:164:13",
+              "text": " @dev Purchase ticket and send reward if necessary\n @param _ticket Ticket number to purchase\n @return bool Validity of transaction"
+            },
+            "functionSelector": "4eefee34",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "buyTicket",
+            "nameLocation": "1061:9:13",
+            "parameters": {
+              "id": 23825,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23824,
+                  "mutability": "mutable",
+                  "name": "_ticket",
+                  "nameLocation": "1078:7:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23903,
+                  "src": "1071:14:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 23823,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1071:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1070:16:13"
+            },
+            "returnParameters": {
+              "id": 23828,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23827,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23903,
+                  "src": "1111:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 23826,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1111:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1110:6:13"
+            },
+            "scope": 24057,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 23917,
+            "nodeType": "FunctionDefinition",
+            "src": "1903:110:13",
+            "nodes": [],
+            "body": {
+              "id": 23916,
+              "nodeType": "Block",
+              "src": "1961:52:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 23912,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 23910,
+                      "name": "ticketsBought",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23811,
+                      "src": "1969:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "+=",
+                    "rightHandSide": {
+                      "hexValue": "31",
+                      "id": 23911,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1986:1:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "1969:18:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 23913,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1969:18:13"
+                },
+                {
+                  "expression": {
+                    "hexValue": "74727565",
+                    "id": 23914,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "2002:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 23909,
+                  "id": 23915,
+                  "nodeType": "Return",
+                  "src": "1995:11:13"
+                }
+              ]
+            },
+            "functionSelector": "68e45122",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "buyTicket2",
+            "nameLocation": "1912:10:13",
+            "parameters": {
+              "id": 23906,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23905,
+                  "mutability": "mutable",
+                  "name": "_ticket",
+                  "nameLocation": "1930:7:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23917,
+                  "src": "1923:14:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 23904,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1923:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1922:16:13"
+            },
+            "returnParameters": {
+              "id": 23909,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23908,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23917,
+                  "src": "1955:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 23907,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1955:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1954:6:13"
+            },
+            "scope": 24057,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 23929,
+            "nodeType": "FunctionDefinition",
+            "src": "2019:100:13",
+            "nodes": [],
+            "body": {
+              "id": 23928,
+              "nodeType": "Block",
+              "src": "2067:52:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 23924,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 23922,
+                      "name": "ticketsBought",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23811,
+                      "src": "2075:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "+=",
+                    "rightHandSide": {
+                      "hexValue": "31",
+                      "id": 23923,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "2092:1:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "2075:18:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 23925,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2075:18:13"
+                },
+                {
+                  "expression": {
+                    "hexValue": "74727565",
+                    "id": 23926,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "2108:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 23921,
+                  "id": 23927,
+                  "nodeType": "Return",
+                  "src": "2101:11:13"
+                }
+              ]
+            },
+            "functionSelector": "31bddc21",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "increaseTicket",
+            "nameLocation": "2028:14:13",
+            "parameters": {
+              "id": 23918,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2042:2:13"
+            },
+            "returnParameters": {
+              "id": 23921,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23920,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23929,
+                  "src": "2061:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 23919,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2061:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2060:6:13"
+            },
+            "scope": 24057,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 23981,
+            "nodeType": "FunctionDefinition",
+            "src": "2222:500:13",
+            "nodes": [],
+            "body": {
+              "id": 23980,
+              "nodeType": "Block",
+              "src": "2293:429:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    23938
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23938,
+                      "mutability": "mutable",
+                      "name": "winningNumber",
+                      "nameLocation": "2309:13:13",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 23980,
+                      "src": "2301:21:13",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 23937,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2301:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23941,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 23939,
+                      "name": "lotteryPicker",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 24012,
+                      "src": "2325:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view returns (uint256)"
+                      }
+                    },
+                    "id": 23940,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2325:15:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2301:39:13"
+                },
+                {
+                  "assignments": [
+                    23943
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23943,
+                      "mutability": "mutable",
+                      "name": "winner",
+                      "nameLocation": "2364:6:13",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 23980,
+                      "src": "2348:22:13",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      },
+                      "typeName": {
+                        "id": 23942,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2348:15:13",
+                        "stateMutability": "payable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23947,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 23944,
+                      "name": "ticketMapping",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23808,
+                      "src": "2373:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_address_payable_$26_storage",
+                        "typeString": "address payable[26] storage ref"
+                      }
+                    },
+                    "id": 23946,
+                    "indexExpression": {
+                      "id": 23945,
+                      "name": "winningNumber",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23938,
+                      "src": "2387:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2373:28:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2348:53:13"
+                },
+                {
+                  "assignments": [
+                    23949
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23949,
+                      "mutability": "mutable",
+                      "name": "totalAmount",
+                      "nameLocation": "2417:11:13",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 23980,
+                      "src": "2409:19:13",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 23948,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2409:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23953,
+                  "initialValue": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    },
+                    "id": 23952,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 23950,
+                      "name": "ticketMax",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23804,
+                      "src": "2431:9:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint64",
+                        "typeString": "uint64"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "*",
+                    "rightExpression": {
+                      "id": 23951,
+                      "name": "ticketPrice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23801,
+                      "src": "2443:11:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint64",
+                        "typeString": "uint64"
+                      }
+                    },
+                    "src": "2431:23:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2409:45:13"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 23960,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 23955,
+                          "name": "winner",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23943,
+                          "src": "2527:6:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 23958,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "2545:1:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 23957,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "2537:7:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 23956,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "2537:7:13",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 23959,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "2537:10:13",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "2527:20:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 23954,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "2519:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 23961,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2519:29:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23962,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2519:29:13"
+                },
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 23963,
+                      "name": "reset",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 24045,
+                      "src": "2585:5:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$_t_bool_$",
+                        "typeString": "function () returns (bool)"
+                      }
+                    },
+                    "id": 23964,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2585:7:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 23965,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2585:7:13"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 23969,
+                        "name": "totalAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23949,
+                        "src": "2616:11:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 23966,
+                        "name": "winner",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23943,
+                        "src": "2600:6:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 23968,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "2607:8:13",
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "src": "2600:15:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 23970,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2600:28:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23971,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2600:28:13"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 23973,
+                        "name": "winner",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23943,
+                        "src": "2659:6:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "id": 23974,
+                        "name": "winningNumber",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23938,
+                        "src": "2667:13:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 23975,
+                        "name": "totalAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23949,
+                        "src": "2682:11:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 23972,
+                      "name": "LotteryAmountPaid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23798,
+                      "src": "2641:17:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256,uint256)"
+                      }
+                    },
+                    "id": 23976,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2641:53:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 23977,
+                  "nodeType": "EmitStatement",
+                  "src": "2636:58:13"
+                },
+                {
+                  "expression": {
+                    "id": 23978,
+                    "name": "winner",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 23943,
+                    "src": "2709:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "functionReturnParameters": 23936,
+                  "id": 23979,
+                  "nodeType": "Return",
+                  "src": "2702:13:13"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 23930,
+              "nodeType": "StructuredDocumentation",
+              "src": "2125:92:13",
+              "text": " @dev Send lottery winner their reward\n @return address of winner"
+            },
+            "functionSelector": "1149a81a",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 23933,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 23932,
+                  "name": "allTicketsSold",
+                  "nameLocations": [
+                    "2251:14:13"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 23821,
+                  "src": "2251:14:13"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2251:14:13"
+              }
+            ],
+            "name": "sendReward",
+            "nameLocation": "2231:10:13",
+            "parameters": {
+              "id": 23931,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2241:2:13"
+            },
+            "returnParameters": {
+              "id": 23936,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23935,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23981,
+                  "src": "2275:15:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 23934,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2275:15:13",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2274:18:13"
+            },
+            "scope": 24057,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 24012,
+            "nodeType": "FunctionDefinition",
+            "src": "2801:233:13",
+            "nodes": [],
+            "body": {
+              "id": 24011,
+              "nodeType": "Block",
+              "src": "2871:163:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    23989
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23989,
+                      "mutability": "mutable",
+                      "name": "entropy",
+                      "nameLocation": "2892:7:13",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 24011,
+                      "src": "2879:20:13",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 23988,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2879:5:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 23997,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 23992,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -4,
+                          "src": "2919:5:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 23993,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2925:9:13",
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "src": "2919:15:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 23994,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -4,
+                          "src": "2936:5:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 23995,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2942:6:13",
+                        "memberName": "number",
+                        "nodeType": "MemberAccess",
+                        "src": "2936:12:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 23990,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "2902:3:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 23991,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "2906:12:13",
+                      "memberName": "encodePacked",
+                      "nodeType": "MemberAccess",
+                      "src": "2902:16:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function () pure returns (bytes memory)"
+                      }
+                    },
+                    "id": 23996,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2902:47:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2879:70:13"
+                },
+                {
+                  "assignments": [
+                    23999
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 23999,
+                      "mutability": "mutable",
+                      "name": "hash",
+                      "nameLocation": "2965:4:13",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 24011,
+                      "src": "2957:12:13",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 23998,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2957:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 24003,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 24001,
+                        "name": "entropy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23989,
+                        "src": "2979:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 24000,
+                      "name": "sha256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": -22,
+                      "src": "2972:6:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_sha256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 24002,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2972:15:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2957:30:13"
+                },
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 24009,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "arguments": [
+                        {
+                          "id": 24006,
+                          "name": "hash",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 23999,
+                          "src": "3010:4:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        ],
+                        "id": 24005,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "3002:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint256_$",
+                          "typeString": "type(uint256)"
+                        },
+                        "typeName": {
+                          "id": 24004,
+                          "name": "uint256",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "3002:7:13",
+                          "typeDescriptions": {}
+                        }
+                      },
+                      "id": 24007,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "3002:13:13",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "%",
+                    "rightExpression": {
+                      "id": 24008,
+                      "name": "ticketMax",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23804,
+                      "src": "3018:9:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint64",
+                        "typeString": "uint64"
+                      }
+                    },
+                    "src": "3002:25:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 23987,
+                  "id": 24010,
+                  "nodeType": "Return",
+                  "src": "2995:32:13"
+                }
+              ]
+            },
+            "functionSelector": "04bccf7a",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 23984,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 23983,
+                  "name": "allTicketsSold",
+                  "nameLocations": [
+                    "2838:14:13"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 23821,
+                  "src": "2838:14:13"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2838:14:13"
+              }
+            ],
+            "name": "lotteryPicker",
+            "nameLocation": "2810:13:13",
+            "parameters": {
+              "id": 23982,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2823:2:13"
+            },
+            "returnParameters": {
+              "id": 23987,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23986,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24012,
+                  "src": "2862:7:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23985,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2862:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2861:9:13"
+            },
+            "scope": 24057,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 24045,
+            "nodeType": "FunctionDefinition",
+            "src": "3102:193:13",
+            "nodes": [],
+            "body": {
+              "id": 24044,
+              "nodeType": "Block",
+              "src": "3157:138:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 24021,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 24019,
+                      "name": "ticketsBought",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 23811,
+                      "src": "3165:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 24020,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "3181:1:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "3165:17:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 24022,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3165:17:13"
+                },
+                {
+                  "body": {
+                    "id": 24040,
+                    "nodeType": "Block",
+                    "src": "3228:42:13",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 24038,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "UnaryOperation",
+                          "operator": "delete",
+                          "prefix": true,
+                          "src": "3238:23:13",
+                          "subExpression": {
+                            "baseExpression": {
+                              "id": 24035,
+                              "name": "ticketMapping",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 23808,
+                              "src": "3245:13:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_payable_$26_storage",
+                                "typeString": "address payable[26] storage ref"
+                              }
+                            },
+                            "id": 24037,
+                            "indexExpression": {
+                              "id": 24036,
+                              "name": "x",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 24024,
+                              "src": "3259:1:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "3245:16:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          },
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 24039,
+                        "nodeType": "ExpressionStatement",
+                        "src": "3238:23:13"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 24031,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 24027,
+                      "name": "x",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 24024,
+                      "src": "3206:1:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint64",
+                        "typeString": "uint64"
+                      },
+                      "id": 24030,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 24028,
+                        "name": "ticketMax",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 23804,
+                        "src": "3210:9:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint64",
+                          "typeString": "uint64"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "+",
+                      "rightExpression": {
+                        "hexValue": "31",
+                        "id": 24029,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "3220:1:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "3210:11:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint64",
+                        "typeString": "uint64"
+                      }
+                    },
+                    "src": "3206:15:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 24041,
+                  "initializationExpression": {
+                    "assignments": [
+                      24024
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 24024,
+                        "mutability": "mutable",
+                        "name": "x",
+                        "nameLocation": "3199:1:13",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 24041,
+                        "src": "3194:6:13",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 24023,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "3194:4:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 24026,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 24025,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "3203:1:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "3194:10:13"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 24033,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "3223:3:13",
+                      "subExpression": {
+                        "id": 24032,
+                        "name": "x",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 24024,
+                        "src": "3223:1:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 24034,
+                    "nodeType": "ExpressionStatement",
+                    "src": "3223:3:13"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "3190:80:13"
+                },
+                {
+                  "expression": {
+                    "hexValue": "74727565",
+                    "id": 24042,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "3284:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 24018,
+                  "id": 24043,
+                  "nodeType": "Return",
+                  "src": "3277:11:13"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 24015,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 24014,
+                  "name": "allTicketsSold",
+                  "nameLocations": [
+                    "3127:14:13"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 23821,
+                  "src": "3127:14:13"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "3127:14:13"
+              }
+            ],
+            "name": "reset",
+            "nameLocation": "3111:5:13",
+            "parameters": {
+              "id": 24013,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3116:2:13"
+            },
+            "returnParameters": {
+              "id": 24018,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24017,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24045,
+                  "src": "3151:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 24016,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3151:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3150:6:13"
+            },
+            "scope": 24057,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "private"
+          },
+          {
+            "id": 24056,
+            "nodeType": "FunctionDefinition",
+            "src": "3465:114:13",
+            "nodes": [],
+            "body": {
+              "id": 24055,
+              "nodeType": "Block",
+              "src": "3544:35:13",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 24053,
+                    "name": "ticketMapping",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 23808,
+                    "src": "3559:13:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_payable_$26_storage",
+                      "typeString": "address payable[26] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 24052,
+                  "id": 24054,
+                  "nodeType": "Return",
+                  "src": "3552:20:13"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 24046,
+              "nodeType": "StructuredDocumentation",
+              "src": "3301:159:13",
+              "text": "@dev Returns ticket map array for front-end access.\n Using a getter method is ineffective since it allows\n only element-level access"
+            },
+            "functionSelector": "7cdcc30e",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTicketsPurchased",
+            "nameLocation": "3474:19:13",
+            "parameters": {
+              "id": 24047,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3493:2:13"
+            },
+            "returnParameters": {
+              "id": 24052,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24051,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24056,
+                  "src": "3516:26:13",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_payable_$26_memory_ptr",
+                    "typeString": "address payable[26]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 24048,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3516:15:13",
+                      "stateMutability": "payable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "id": 24050,
+                    "length": {
+                      "hexValue": "3236",
+                      "id": 24049,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "3532:2:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_26_by_1",
+                        "typeString": "int_const 26"
+                      },
+                      "value": "26"
+                    },
+                    "nodeType": "ArrayTypeName",
+                    "src": "3516:19:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_payable_$26_storage_ptr",
+                      "typeString": "address payable[26]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3515:28:13"
+            },
+            "scope": 24057,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Lottery",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 23784,
+          "nodeType": "StructuredDocumentation",
+          "src": "58:263:13",
+          "text": " @title Ethereum-Lottery\n @author Nagaganesh Jaladanki\n @dev Simple lottery smart contract to run on the Ethereum\n chain. Designed to work well with a web3 front-end.\n Source of randomness comes from Ethereum block hashes.\n MIT License."
+        },
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          24057
+        ],
+        "name": "Lottery",
+        "nameLocation": "332:7:13",
+        "scope": 24058,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 13
+}
