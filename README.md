@@ -6,6 +6,8 @@ Learn celestia (https://docs.celestia.org/concepts/how-celestia-works/introducti
 
 We are going to demo a dAPP (Lottery) deployed on a local ethermintd integrated with rollkit (https://rollkit.dev/docs/intro/). Blocks will be submitted to the Celesia DA layer via a local light node connected to the blockspace race.
 
+A working version running on BSR as of 13th May 2023 is available here : http://celestia-rollup-lottery.pops.one:3000/
+
 ## Requirements
 
 - Foundry
@@ -162,6 +164,16 @@ You can now import the $PRIVATE_KEY into metamask.
 For testing, create another account and transfer EVMOS to that new account !!
 
 Enjoy !!
+
+## Troubleshooting
+
+For an unknown reason, it seems the first purchase can't be done via the webUI, however using command line seems to fix it
+
+```
+cast send $CONTRACT_ADDRESS "buyTicket(uint16)" 2 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY_USR --value 5000000000000000000
+```
+
+And subsequent purchase via UI works well !
 
 # Credits
 Thanks to <a href="https://github.com/njaladan/"> Nagaganesh Jaladanki </a>.
